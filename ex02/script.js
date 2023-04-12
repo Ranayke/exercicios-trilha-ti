@@ -42,16 +42,22 @@ class Form {
       return;
     } else {
       let dadosSalvos = localStorage.getItem("array");
-      alertMessage();
 
       if (dadosSalvos === null || dadosSalvos === undefined) {
         array.push(objeto);
+        alertMessage();
         localStorage.setItem("array", JSON.stringify(array));
       } else {
         let novaPosicao = JSON.parse(dadosSalvos);
 
+        for (let i = 0; i < novaPosicao.length; i++) {
+          if (objeto.titulo === novaPosicao[i].titulo) {
+            alert("Produto já existe no banco de dados!");
+            return;
+          }
+        }
         novaPosicao.push(objeto);
-
+        alertMessage();
         localStorage.setItem("array", JSON.stringify(novaPosicao));
       }
       return;
@@ -71,7 +77,6 @@ class Form {
       let divItem = document.createElement("div");
       divItem.setAttribute("class", "div card text-bg-light mb-3");
       divItem.setAttribute("id", `c0${i}`);
-      document.getElementById("divProdutos").appendChild(divItem);
 
       let tituloItem = document.createElement("h3");
       tituloItem.appendChild(
@@ -95,7 +100,7 @@ class Form {
         )
       );
 
-      document.getElementById(`c0${i}`).innerHTML = "";
+      document.getElementById("divProdutos").appendChild(divItem);
       document.getElementById(`c0${i}`).appendChild(tituloItem);
       document.getElementById(`c0${i}`).appendChild(descricaoItem);
       document.getElementById(`c0${i}`).appendChild(precoItem);
