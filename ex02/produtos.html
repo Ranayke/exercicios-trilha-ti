@@ -28,7 +28,9 @@
         display: flex;
         justify-content: space-around;
       }
-      .red {
+      #divAlert {
+        display: grid;
+        justify-content: center;
         color: red;
       }
     </style>
@@ -37,7 +39,7 @@
     <div class="navbar mb-5">
       <a href="./index.html">
         <button type="button" class="btn btn-outline-success">
-          << Cadastrar produtos
+          &larr; Cadastrar produtos
         </button>
       </a>
       <h1>Produtos Cadastrados</h1>
@@ -50,37 +52,10 @@
       </button>
     </div>
 
-    <div class="container">
-      <div class="div card text-bg-light mb-3" id="c00">
-        <p class="red">Produto ainda não cadastrado</p>
-      </div>
-      <div class="div card text-bg-light mb-3" id="c01">
-        <p class="red">Produto ainda não cadastrado</p>
-      </div>
-      <div class="div card text-bg-light mb-3" id="c02">
-        <p class="red">Produto ainda não cadastrado</p>
-      </div>
-      <div class="div card text-bg-light mb-3" id="c03">
-        <p class="red">Produto ainda não cadastrado</p>
-      </div>
-      <div class="div card text-bg-light mb-3" id="c04">
-        <p class="red">Produto ainda não cadastrado</p>
-      </div>
-      <div class="div card text-bg-light mb-3" id="c05">
-        <p class="red">Produto ainda não cadastrado</p>
-      </div>
-      <div class="div card text-bg-light mb-3" id="c06">
-        <p class="red">Produto ainda não cadastrado</p>
-      </div>
-      <div class="div card text-bg-light mb-3" id="c07">
-        <p class="red">Produto ainda não cadastrado</p>
-      </div>
-      <div class="div card text-bg-light mb-3" id="c08">
-        <p class="red">Produto ainda não cadastrado</p>
-      </div>
-      <div class="div card text-bg-light mb-3" id="c09">
-        <p class="red">Produto ainda não cadastrado</p>
-      </div>
+    <div class="container" id="divProdutos"></div>
+    <div id="divAlert">
+      <h3>Não foram encontrados produtos</h3>
+      <h4>Atualize a lista ou insira um novo dado</h4>
     </div>
 
     <script
