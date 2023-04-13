@@ -76,9 +76,14 @@ class Form {
     }
 
     for (let i = 0; i < formProducts.length; i++) {
+
       let divItem = document.createElement("div");
-      divItem.setAttribute("class", "div card text-bg-light mb-3");
+      divItem.setAttribute("role", "alert");
+      divItem.setAttribute("class", "div card text-bg-light mb-3 alert");
       divItem.setAttribute("id", `c0${i}`);
+      divItem.innerHTML = [
+        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+      ].join("");
 
       let tituloItem = document.createElement("h3");
       tituloItem.appendChild(
