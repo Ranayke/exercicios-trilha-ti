@@ -50,11 +50,13 @@ class Form {
       } else {
         let novaPosicao = JSON.parse(dadosSalvos);
 
-        for (let i = 0; i < novaPosicao.length; i++) {
-          if (objeto.titulo === novaPosicao[i].titulo) {
-            alert("Produto já existe no banco de dados!");
-            return;
-          }
+        const nameAlreadyExists = novaPosicao.some(
+          (data) => data.titulo === objeto.titulo
+        );
+
+        if (nameAlreadyExists) {
+          alert("Produto já existe no banco de dados!");
+          return;
         }
         novaPosicao.push(objeto);
         alertMessage();
