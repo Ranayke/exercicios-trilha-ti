@@ -66,6 +66,12 @@ class Form {
     }
   }
 
+  deleteOneProduct(indexThatArray) {
+    let arrayToDeleteProduct = JSON.parse(localStorage.array);
+    arrayToDeleteProduct.splice(indexThatArray, 1);
+    localStorage.setItem("array", JSON.stringify(arrayToDeleteProduct));
+  }
+
   verDados() {
     event.preventDefault();
     let dados = localStorage.getItem("array");
@@ -76,13 +82,12 @@ class Form {
     }
 
     for (let i = 0; i < formProducts.length; i++) {
-
       let divItem = document.createElement("div");
       divItem.setAttribute("role", "alert");
       divItem.setAttribute("class", "div card text-bg-light mb-3 alert");
       divItem.setAttribute("id", `c0${i}`);
       divItem.innerHTML = [
-        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+        `<div class="deleteProduct"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="formulario.deleteOneProduct(${i})"></button></div>`,
       ].join("");
 
       let tituloItem = document.createElement("h3");
