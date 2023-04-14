@@ -72,6 +72,18 @@ class Form {
     localStorage.setItem("array", JSON.stringify(arrayToDeleteProduct));
   }
 
+  buscar() {
+    let buscarTitulo = JSON.parse(localStorage.array);
+    let index = buscarTitulo
+      .map((produto) => produto.titulo)
+      .indexOf(this.titulo.value);
+
+    this.titulo.value = buscarTitulo[index].titulo;
+    this.descricao.value = buscarTitulo[index].descricao;
+    this.preco.value = buscarTitulo[index].preco;
+    this.quantidade.value = buscarTitulo[index].quantidade;
+  }
+
   verDados() {
     event.preventDefault();
     let dados = localStorage.getItem("array");

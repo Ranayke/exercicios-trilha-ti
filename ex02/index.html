@@ -17,6 +17,10 @@
         margin-bottom: 0.6rem;
       }
 
+      button {
+        margin: 0.5rem 0.5rem 0 0;
+      }
+
       h1 {
         margin-top: 1rem;
       }
@@ -69,11 +73,21 @@
       >
         Salvar
       </button>
+
       <a href="./produtos.html">
         <button type="button" class="btn btn-outline-success">
           Ver dados salvos &rarr;
         </button>
+        <br />
       </a>
+      <button
+        type="button"
+        class="btn btn-outline-primary"
+        onclick="formulario.buscar()"
+        id="liveAlertBtn"
+      >
+        Buscar
+      </button>
     </div>
 
     <script src="script.js"></script>
