@@ -1,4 +1,6 @@
 let array = [];
+let indexSearch = "";
+let buscarTitulo = "";
 
 alertMessage = () => {
   const alertPlaceholder = document.getElementById("liveAlertPlaceholder");
@@ -70,18 +72,30 @@ class Form {
     let arrayToDeleteProduct = JSON.parse(localStorage.array);
     arrayToDeleteProduct.splice(indexThatArray, 1);
     localStorage.setItem("array", JSON.stringify(arrayToDeleteProduct));
+    this.verDados()
   }
 
   buscar() {
-    let buscarTitulo = JSON.parse(localStorage.array);
-    let index = buscarTitulo
+    buscarTitulo = JSON.parse(localStorage.array);
+    indexSearch = buscarTitulo
       .map((produto) => produto.titulo)
       .indexOf(this.titulo.value);
 
-    this.titulo.value = buscarTitulo[index].titulo;
-    this.descricao.value = buscarTitulo[index].descricao;
-    this.preco.value = buscarTitulo[index].preco;
-    this.quantidade.value = buscarTitulo[index].quantidade;
+    this.titulo.value = buscarTitulo[indexSearch].titulo;
+    this.descricao.value = buscarTitulo[indexSearch].descricao;
+    this.preco.value = buscarTitulo[indexSearch].preco;
+    this.quantidade.value = buscarTitulo[indexSearch].quantidade;
+  }
+
+  atualizar() {
+    let newObjeto = {
+      titulo: this.titulo.value,
+      descricao: this.descricao.value,
+      preco: this.preco.value,
+      quantidade: this.quantidade.value,
+    };
+    buscarTitulo[indexSearch] = newObjeto
+    localStorage.setItem("array", JSON.stringify(buscarTitulo));
   }
 
   verDados() {
