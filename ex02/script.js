@@ -81,6 +81,11 @@ class Form {
       .map((produto) => produto.titulo)
       .indexOf(this.titulo.value);
 
+    if (indexSearch == -1) {
+      alert("Produto não existe no banco de dados!");
+      return;
+    }
+
     this.titulo.value = buscarTitulo[indexSearch].titulo;
     this.descricao.value = buscarTitulo[indexSearch].descricao;
     this.preco.value = buscarTitulo[indexSearch].preco;
@@ -94,6 +99,16 @@ class Form {
       preco: this.preco.value,
       quantidade: this.quantidade.value,
     };
+
+    const nameAlreadyExists = JSON.parse(localStorage.array).some(
+      (data) => data.titulo === newObjeto.titulo
+    );
+
+    if (nameAlreadyExists) {
+      alert("Produto já existe no banco de dados!");
+      return;
+    }
+
     buscarTitulo[indexSearch] = newObjeto;
     localStorage.setItem("array", JSON.stringify(buscarTitulo));
   }
