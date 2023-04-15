@@ -72,7 +72,7 @@ class Form {
     let arrayToDeleteProduct = JSON.parse(localStorage.array);
     arrayToDeleteProduct.splice(indexThatArray, 1);
     localStorage.setItem("array", JSON.stringify(arrayToDeleteProduct));
-    this.verDados()
+    this.verDados();
   }
 
   buscar() {
@@ -94,17 +94,21 @@ class Form {
       preco: this.preco.value,
       quantidade: this.quantidade.value,
     };
-    buscarTitulo[indexSearch] = newObjeto
+    buscarTitulo[indexSearch] = newObjeto;
     localStorage.setItem("array", JSON.stringify(buscarTitulo));
   }
 
   verDados() {
-    event.preventDefault();
     let dados = localStorage.getItem("array");
     let formProducts = JSON.parse(dados);
     document.getElementById("divProdutos").innerHTML = "";
-    if (localStorage.array) {
+    if (localStorage.array && localStorage.array !== "[]") {
       document.getElementById("divAlert").innerHTML = "";
+    } else {
+      document.getElementById("divAlert").innerHTML = [
+        `<h3>Não foram encontrados produtos</h3>
+        <h4>Atualize a lista ou insira um novo dado</h4>`,
+      ].join("");
     }
 
     for (let i = 0; i < formProducts.length; i++) {
