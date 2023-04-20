@@ -2,21 +2,17 @@ let array = [];
 let indexSearch = "";
 let buscarTitulo = "";
 
-alertMessage = () => {
-  const alertPlaceholder = document.getElementById("liveAlertPlaceholder");
-  const appendAlert = (message, type) => {
-    const wrapper = document.createElement("div");
-    wrapper.innerHTML = [
-      `<div class="alert alert-${type} alert-dismissible" role="alert">`,
-      `   <div>${message}</div>`,
-      '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-      "</div>",
-    ].join("");
+const alertPlaceholder = document.getElementById("liveAlertPlaceholder");
+const appendAlert = (message, type) => {
+  const wrapper = document.createElement("div");
+  wrapper.innerHTML = [
+    `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+    `   <div>${message}</div>`,
+    '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+    "</div>",
+  ].join("");
 
-    alertPlaceholder.append(wrapper);
-  };
-
-  appendAlert("Produto adicionado com sucesso!", "success");
+  alertPlaceholder.append(wrapper);
 };
 
 class Form {
@@ -47,7 +43,7 @@ class Form {
 
       if (dadosSalvos === null || dadosSalvos === undefined) {
         array.push(objeto);
-        alertMessage();
+        appendAlert("Produto adicionado com sucesso!", "success");
         localStorage.setItem("array", JSON.stringify(array));
       } else {
         let novaPosicao = JSON.parse(dadosSalvos);
@@ -61,7 +57,7 @@ class Form {
           return;
         }
         novaPosicao.push(objeto);
-        alertMessage();
+        appendAlert("Produto adicionado com sucesso!", "success");
         localStorage.setItem("array", JSON.stringify(novaPosicao));
       }
       return;
@@ -86,6 +82,7 @@ class Form {
       return;
     }
 
+    alert("Produto encontrado!");
     this.titulo.value = buscarTitulo[indexSearch].titulo;
     this.descricao.value = buscarTitulo[indexSearch].descricao;
     this.preco.value = buscarTitulo[indexSearch].preco;
@@ -108,7 +105,7 @@ class Form {
       alert("Produto já existe no banco de dados!");
       return;
     }
-
+    appendAlert("Produto atualizado com sucesso!", "success");
     buscarTitulo[indexSearch] = newObjeto;
     localStorage.setItem("array", JSON.stringify(buscarTitulo));
   }
