@@ -1,4 +1,6 @@
 const array = [];
+let indexMotoristaBuscado = "";
+let motoristasSalvos = "";
 
 class Form {
   constructor() {
@@ -80,6 +82,52 @@ class Form {
       localStorage.setItem("motorista", JSON.stringify(array));
       times++;
     }
+  }
+
+  buscarMotorista() {
+    const buscar = document.getElementById("name").value;
+    motoristasSalvos = JSON.parse(localStorage.getItem("motorista"));
+
+    indexMotoristaBuscado = motoristasSalvos
+      .map((data) => data.nome)
+      .indexOf(buscar);
+
+    if (indexMotoristaBuscado == -1) {
+      alert("Motorista não existe no banco de dados!");
+      return;
+    }
+
+    alert("Motorista encontrado!");
+    document.getElementById("name").value =
+      motoristasSalvos[indexMotoristaBuscado].nome;
+    document.getElementById("age").value =
+      motoristasSalvos[indexMotoristaBuscado].idade;
+    document.getElementById("weight").value =
+      motoristasSalvos[indexMotoristaBuscado].peso;
+    document.getElementById("email").value =
+      motoristasSalvos[indexMotoristaBuscado].email;
+  }
+
+  atualizarMotorista() {
+    const obj = {
+      nome: document.getElementById("name").value,
+      idade: document.getElementById("age").value,
+      peso: document.getElementById("weight").value,
+      email: document.getElementById("email").value,
+    };
+
+    console.log(obj);
+
+    const nameAlreadyExists = JSON.parse(localStorage.motorista).some(
+      (data) => data.nome === obj.nome
+    );
+
+    if (nameAlreadyExists) {
+      alert("Motorista já existe no banco de dados!");
+      return;
+    }
+    motoristasSalvos[indexMotoristaBuscado] = obj;
+    localStorage.setItem("motorista", JSON.stringify(motoristasSalvos));
   }
 
   salvarCarro() {
