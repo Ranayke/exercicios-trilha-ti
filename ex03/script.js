@@ -1,6 +1,8 @@
 const array = [];
 let indexMotoristaBuscado = "";
+let indexCarroBuscado = "";
 let motoristasSalvos = "";
+let carrosSalvos = "";
 
 class Form {
   constructor() {
@@ -39,6 +41,7 @@ class Form {
       if (dadosSalvos === null || dadosSalvos === undefined) {
         array.push(obj);
         localStorage.setItem("motorista", JSON.stringify(array));
+        alert("Motorista salvo!");
       } else {
         let novaPosicao = JSON.parse(dadosSalvos);
         const motoristaAlreadyExists = novaPosicao.some(
@@ -50,6 +53,7 @@ class Form {
         }
         novaPosicao.push(obj);
         localStorage.setItem("motorista", JSON.stringify(novaPosicao));
+        alert("Motorista salvo!");
       }
     }
   }
@@ -82,6 +86,7 @@ class Form {
       localStorage.setItem("motorista", JSON.stringify(array));
       times++;
     }
+    alert("Foram gerados 9 motoristas aleatórios");
   }
 
   buscarMotorista() {
@@ -116,8 +121,6 @@ class Form {
       email: document.getElementById("email").value,
     };
 
-    console.log(obj);
-
     const nameAlreadyExists = JSON.parse(localStorage.motorista).some(
       (data) => data.nome === obj.nome
     );
@@ -128,6 +131,7 @@ class Form {
     }
     motoristasSalvos[indexMotoristaBuscado] = obj;
     localStorage.setItem("motorista", JSON.stringify(motoristasSalvos));
+    alert("Cadastro do motorista atualizado!");
   }
 
   salvarCarro() {
@@ -197,6 +201,49 @@ class Form {
       localStorage.setItem("carro", JSON.stringify(array));
       times++;
     }
+  }
+
+  buscarCarro() {
+    const buscar = document.getElementById("parking").value;
+    carrosSalvos = JSON.parse(localStorage.getItem("carro"));
+
+    indexCarroBuscado = carrosSalvos.map((data) => data.vaga).indexOf(buscar);
+
+    if (indexCarroBuscado == -1) {
+      alert("Vaga vazia!!");
+      return;
+    }
+
+    alert("Carro encontrado!");
+    document.getElementById("brand").value =
+      carrosSalvos[indexCarroBuscado].marca;
+    document.getElementById("model").value =
+      carrosSalvos[indexCarroBuscado].modelo;
+    document.getElementById("carWeight").value =
+      carrosSalvos[indexCarroBuscado].pesoCarro;
+    document.getElementById("parking").value =
+      carrosSalvos[indexCarroBuscado].vaga;
+  }
+
+  atualizarCarro() {
+    const obj = {
+      marca: document.getElementById("brand").value,
+      modelo: document.getElementById("model").value,
+      pesoCarro: document.getElementById("carWeight").value,
+      vaga: document.getElementById("parking").value,
+    };
+
+    const vagaAlreadyExists = JSON.parse(localStorage.carro).some(
+      (data) => data.vaga === obj.vaga
+    );
+
+    if (vagaAlreadyExists) {
+      alert("Já existe um carro nessa vaga!");
+      return;
+    }
+    carrosSalvos[indexCarroBuscado] = obj;
+    localStorage.setItem("carro", JSON.stringify(carrosSalvos));
+    alert("Vaga do carro atualizada com sucesso!");
   }
 }
 

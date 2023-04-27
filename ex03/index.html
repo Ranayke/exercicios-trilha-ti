@@ -96,6 +96,14 @@
     <div>
       <form>
         <h2>Carro</h2>
+        <label for="parking" class="form-label">Vaga:</label>
+        <input
+          type="number"
+          id="parking"
+          placeholder="Insira a vaga a ser preenchida"
+          class="form-control"
+        />
+
         <label for="brand" class="form-label">Marca:</label>
         <input
           type="text"
@@ -119,14 +127,6 @@
           placeholder="Insira o peso do carro"
           class="form-control"
         />
-
-        <label for="parking" class="form-label">Vaga:</label>
-        <input
-          type="number"
-          id="parking"
-          placeholder="Insira a vaga a ser preenchida"
-          class="form-control"
-        />
       </form>
       <button
         type="button"
@@ -141,6 +141,20 @@
         onclick="formulario.gerarCarros()"
       >
         Gerar 9 carros
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        onclick="formulario.buscarCarro()"
+      >
+        Buscar
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        onclick="formulario.atualizarCarro()"
+      >
+        Atualizar
       </button>
     </div>
 
